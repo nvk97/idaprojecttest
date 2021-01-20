@@ -1,18 +1,26 @@
 export const state = () => ({
   products: [],
   cart: [],
-  count:0
+  categories:[],
+  count:0,
+  activeCategory:0
 
 })
 
 export const actions = {
-  async GET_PRODUCTS({
-    commit
-  }, category) {
+  async GET_PRODUCTS({commit}, category) {
     try {
       const products = await this.$axios.$get(`api/product?category=${category}`)
       commit('SET_PRODUCTS_TO_STATE', products)
       commit('SORT_PRODUCTS_BY_PRICE')
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  async GET_CATEGORIES({commit}) {
+    try {
+      const cat = await this.$axios.$get(`api/product-category`)
+      commit('SET_CATEGORIES_TO_STATE',cat)
     } catch (e) {
       console.log(e)
     }
@@ -21,8 +29,12 @@ export const actions = {
 }
 
 export const mutations = {
-  SET_PRODUCTS_TO_STATE(state, products) {
-    state.products = products
+  SET_CATEGORIES_TO_STATE(state,payload){
+    state.categories = payload
+  },
+  SET_PRODUCTS_TO_STATE(state, payload) {
+    state.products = payload
+    state.activeCategory = payload[0].category
   },
   SORT_PRODUCTS_BY_PRICE(state) {
     state.products.sort((a, b) => a.price - b.price)
@@ -47,11 +59,6 @@ export const mutations = {
       state.cart.push(payload)
       state.count++
     }
-
-
-
-    
-
   },
   DELETE_AT_CART(state,index){
     state.count-=state.cart[index].count
@@ -59,6 +66,7 @@ export const mutations = {
   },
   SUCCESS_POST(state){
     state.cart = []
+    state.count = 0
   }
 
 }
@@ -72,5 +80,11 @@ export const getters = {
   },
   getCount(state){
     return state.count
+  },
+  getCategories(state){
+    return state.categories
+  },
+  getActiveCategory(state){
+    return state.activeCategory
   }
 }

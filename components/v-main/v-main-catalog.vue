@@ -14,7 +14,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .catalog{
-    width:150px;
+    width:200px;
     position: sticky;
     top:10px;
     height: 500px;

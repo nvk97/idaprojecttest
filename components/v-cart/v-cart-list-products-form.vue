@@ -10,6 +10,7 @@
 
 <script>
 import { mask } from "vue-the-mask";
+import {mapMutations} from 'vuex'
 export default {
   directives: { mask },
   data(){
@@ -23,9 +24,11 @@ export default {
     }
   },
   methods:{
+    ...mapMutations('products',{clear:'SUCCESS_POST'}),
     submit(){
       if(!!this.contact.name&!!this.contact.phone&!!this.contact.address){
         this.$nuxt.$emit('success-message')
+        this.clear()
       }else{
         this.error=true
         setTimeout(()=>this.error=false,2000 )

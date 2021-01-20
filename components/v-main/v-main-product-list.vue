@@ -21,7 +21,6 @@ export default {
 .product-list{
     margin-top: 26px;
     display: flex;
-    justify-content: flex-end;
     flex-wrap: wrap;
 }
 </style>

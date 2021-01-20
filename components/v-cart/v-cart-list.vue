@@ -60,8 +60,9 @@ export default {
   },
   created() {
     this.$nuxt.$on("success-message", () => {
-      this.status = true;
-      setTimeout(()=>this.status=false,5000)
+      this.success = true;
+      setTimeout(() => this.$nuxt.$emit("close-cart"), 4300);
+      setTimeout(() => (this.success = false), 5000);
     });
   },
 };
@@ -78,13 +79,13 @@ export default {
     display: block;
     margin: 50px auto 0;
   }
-  .success{
-    &-title{
-      @include text(24px,700,#000000);
+  .success {
+    &-title {
+      @include text(24px, 700, #000000);
       margin: 10px auto;
     }
-    &-subtitle{
-      @include text(16px,400,$grey);
+    &-subtitle {
+      @include text(16px, 400, $grey);
       margin: 0 auto;
     }
   }
