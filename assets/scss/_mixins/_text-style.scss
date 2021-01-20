@@ -1,0 +1,11 @@
+@mixin text($f-size, $f-wei, $f-color) {
+  font-size: $f-size;
+  font-weight: $f-wei;
+  color: $f-color;
+}
+
+@mixin cart {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}

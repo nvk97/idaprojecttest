@@ -1,0 +1,33 @@
+@import "_vars/vars";
+@import "_fonts/fonts";
+
+
+
+*{
+    box-sizing:border-box;
+}
+body {
+    font-family: $default-font;
+    font-size: $font-size;
+    background: $background;
+    user-select:none;
+    
+}
+.container{
+    margin: 0 auto;
+    @include elg-desktop{
+        width:1500px
+    }
+    @include lg-desktop{
+        width:1250px;
+    }
+    @include md-desktop{
+        width:950px
+    }
+    @include sm-tablets{
+        width:720px
+    }
+    @include sm-mobile{
+        width:480px
+    }
+}
