@@ -1,5 +1,5 @@
 # idaprojecttest
-
+http://ida.javascriptizer.ru/ Развернутое приложение
 ## Build Setup
 
 ```bash
