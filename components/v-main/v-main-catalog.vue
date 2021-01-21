@@ -21,6 +21,12 @@ export default {
     &__title{
         @include text(32px,700,$black)
     }
+    @include sm-mobile{
+        display: none;
+    }
+    @include esm-mobile{
+        display: none;
+    }
 }
 </style>
 

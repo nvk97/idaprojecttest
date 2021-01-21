@@ -1,10 +1,10 @@
 <template>
-  <div class="header">
+  <header class="header">
     <div class="container">
       <vHeaderLogo />
       <vHeaderBasket />
     </div>
-  </div>
+  </header>
 </template>
 
 <script>

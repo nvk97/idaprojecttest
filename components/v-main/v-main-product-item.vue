@@ -40,11 +40,11 @@ export default {
         i++;
       }
       return res.reverse().join("");
-    }
     },
-    methods: {
-      ...mapMutations('products',{add:'ADD_TO_CART'}),
-    },
+  },
+  methods: {
+    ...mapMutations("products", { add: "ADD_TO_CART" }),
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -53,6 +53,7 @@ export default {
   width: 250px;
   height: 275px;
   margin: 0 8px 16px;
+  transition: 0.2s;
   @include cart;
   cursor: pointer;
   .wrapper {
@@ -99,12 +100,18 @@ export default {
     margin: 6px 0 0 16px;
   }
   &:hover {
+    @include cart-hover;
     .rating {
       opacity: 1;
     }
     .add-to-cart {
       opacity: 1;
     }
+  }
+  @include sm-mobile {
+    width: 220px;
+    height: 260px;
+    margin-bottom: 8;
   }
 }
 </style>

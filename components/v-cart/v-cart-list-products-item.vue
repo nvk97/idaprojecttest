@@ -50,7 +50,7 @@ export default {
   }
   .info {
     margin-left: 20px;
-    flex-basis:45%;
+    flex-basis: 45%;
     .name {
       @include text(14px, 400, $grey);
       margin-bottom: 6px;
@@ -71,6 +71,22 @@ export default {
           fill: $black;
         }
       }
+    }
+  }
+  @include sm-mobile {
+    height: 100px;
+    img {
+      margin-left: 20px;
+      width: 60px;
+      height: 80px;
+    }
+  }
+  @include esm-mobile {
+    height: 100px;
+    img {
+      margin-left: 20px;
+      width: 60px;
+      height: 80px;
     }
   }
 }

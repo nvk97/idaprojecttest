@@ -36,6 +36,24 @@ export default {
         @include text(20px,400,$black)
     }
     }
+    @include elg-desktop{
+        width: 135px;
+    }
+    @include lg-desktop{
+        width: 153px;
+    }
+    @include md-desktop{
+        width:120px;
+    }
+    @include sm-tablets{
+        width:150px
+    }
+    @include sm-mobile{
+        display: none;
+    }
+    @include esm-mobile{
+        display: none;
+    }
 }
 </style>
 

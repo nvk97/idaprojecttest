@@ -28,4 +28,7 @@ body {
     @include sm-mobile{
         width:480px
     }
+    @include esm-mobile{
+        width:350px
+    }
 }

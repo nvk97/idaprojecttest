@@ -17,5 +17,11 @@ export default {
 <style lang="scss" scoped>
 .product{
 margin-left: 30px;
+@include sm-mobile {
+    margin-left: 0;
+  }
+  @include esm-mobile {
+    margin-left: 0;
+  }
 }
 </style>

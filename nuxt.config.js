@@ -5,6 +5,9 @@ export default {
     htmlAttrs: {
       lang: 'en'
     },
+    server:{
+      port:8000
+    },
     meta: [{
         charset: 'utf-8'
       },

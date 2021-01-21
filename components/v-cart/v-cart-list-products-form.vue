@@ -47,6 +47,7 @@ export default {
     width: 364px;
     outline: none;
     border: none;
+    overflow: hidden;
     background: #f8f8f8;
     border-radius: 8px;
     height: 50px;
@@ -74,6 +75,24 @@ export default {
   .error-message{
     margin-top: 5px;
     @include text(12px,400px,red)
+  }
+  @include sm-mobile{
+    input{
+      width:100%
+    }
+    .submit-btn{
+      width: 100%;
+    }
+    
+  }
+  @include esm-mobile{
+    input{
+      width:100%
+    }
+    .submit-btn{
+      width: 100%;
+    }
+    
   }
 }
 </style>

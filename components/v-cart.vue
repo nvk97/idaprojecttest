@@ -61,5 +61,19 @@ export default {
       right:0
     }
   }
+  @include sm-mobile{
+    &__list {
+      width: 100vw;
+      padding: 20px 20px 0 ;
+      flex-basis: 100%;
+    }
+  }
+  @include esm-mobile{
+    &__list {
+      width: 100vw;
+      padding: 20px 20px 0 ;
+      flex-basis: 100%;
+    }
+  }
 }
 </style>

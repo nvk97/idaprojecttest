@@ -14,7 +14,7 @@
     </div>
     <div class="checkout">
       <div class="title">Оформить заказ</div>
-      <vCartListProductsForm/>
+      <vCartListProductsForm />
     </div>
   </div>
 </template>
@@ -45,6 +45,30 @@ export default {
     height: 400px;
     overflow: auto;
     padding: 10px;
+  }
+  @include sm-mobile {
+    height: 100%;
+    .title {
+      margin-top: 7px;
+    }
+    &-list {
+      margin-top: 10px;
+      padding: 16px;
+    }
+  }
+  @include esm-mobile {
+    height: 100%;
+    .title {
+      margin-top: 7px;
+    }
+    &-list {
+      height: 350px;
+      margin-top: 10px;
+      padding: 16px;
+    }
+    .checkout{
+      margin-top: 50px;
+    }
   }
 }
 </style>
