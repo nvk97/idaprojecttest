@@ -49,6 +49,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .product-item {
+  user-select: none;
   position: relative;
   width: 250px;
   height: 275px;

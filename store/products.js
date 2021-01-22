@@ -1,14 +1,18 @@
+import * as Cookie from 'js-cookie'
+
 export const state = () => ({
   products: [],
   cart: [],
-  categories:[],
-  count:0,
-  activeCategory:0
+  categories: [],
+  count: 0,
+  activeCategory: 0
 
 })
 
 export const actions = {
-  async GET_PRODUCTS({commit}, category) {
+  async GET_PRODUCTS({
+    commit
+  }, category) {
     try {
       const products = await this.$axios.$get(`api/product?category=${category}`)
       commit('SET_PRODUCTS_TO_STATE', products)
@@ -17,19 +21,24 @@ export const actions = {
       console.log(e)
     }
   },
-  async GET_CATEGORIES({commit}) {
+  async GET_CATEGORIES({
+    commit
+  }) {
     try {
       const cat = await this.$axios.$get(`api/product-category`)
-      commit('SET_CATEGORIES_TO_STATE',cat)
+      commit('SET_CATEGORIES_TO_STATE', cat)
     } catch (e) {
       console.log(e)
     }
+  },
+  GET_CART({commit}){
+    commit('GET_CART_FROM_COOKIES')
   }
 
 }
 
 export const mutations = {
-  SET_CATEGORIES_TO_STATE(state,payload){
+  SET_CATEGORIES_TO_STATE(state, payload) {
     state.categories = payload
   },
   SET_PRODUCTS_TO_STATE(state, payload) {
@@ -48,25 +57,41 @@ export const mutations = {
       return item.id == id
     })
     if (!!res.length) {
-      let index = state.cart.findIndex(item=>item.id===payload.id)
+      let index = state.cart.findIndex(item => item.id === payload.id)
       state.cart[index].count++
       let buf = state.cart //Не смог придумать ничего, что бы поля объекта в массиве были реактивны
-      state.cart=[]
+      state.cart = []
       state.cart = buf
-      state.count = state.cart.reduce((total,val)=>{total+=val.count;return total},0)
-    }else{
-      payload.count=1
+      state.count = state.cart.reduce((total, val) => {
+        total += val.count;
+        return total
+      }, 0)
+      Cookie.set('cart',JSON.stringify(state.cart))
+    } else {
+      payload.count = 1
       state.cart.push(payload)
+      Cookie.set('cart', JSON.stringify(state.cart))
       state.count++
     }
   },
-  DELETE_AT_CART(state,index){
-    state.count-=state.cart[index].count
-    state.cart.splice(index,1)
+  DELETE_AT_CART(state, index) {
+    state.count -= state.cart[index].count
+    state.cart.splice(index, 1)
+    Cookie.set('cart',JSON.stringify(state.cart))
   },
-  SUCCESS_POST(state){
+  SUCCESS_POST(state) {
     state.cart = []
     state.count = 0
+    Cookie.set('cart',JSON.stringify(state.cart))
+  },
+  GET_CART_FROM_COOKIES(state){
+    if (!!Cookie.get('cart')){
+      state.cart = JSON.parse(Cookie.get('cart'))
+      state.count = JSON.parse(Cookie.get('cart')).reduce((total, val) => {
+        total += val.count;
+        return total
+      }, 0)
+    }
   }
 
 }
@@ -78,13 +103,13 @@ export const getters = {
   getCart(state) {
     return state.cart
   },
-  getCount(state){
+  getCount(state) {
     return state.count
   },
-  getCategories(state){
+  getCategories(state) {
     return state.categories
   },
-  getActiveCategory(state){
+  getActiveCategory(state) {
     return state.activeCategory
   }
 }

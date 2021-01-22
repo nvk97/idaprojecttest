@@ -31,14 +31,18 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters,mapActions} from 'vuex'
 export default {
   computed:{
     ...mapGetters('products',{counter:'getCount'})
   },
   methods:{
-
+    ...mapActions('products',{getFromCookie:'GET_CART'})
+  },
+  mounted(){
+    this.getFromCookie()
   }
+
 }
 </script>
 

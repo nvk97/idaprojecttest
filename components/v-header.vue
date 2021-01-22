@@ -2,18 +2,18 @@
   <header class="header">
     <div class="container">
       <vHeaderLogo />
-      <vHeaderBasket />
+      <vHeaderCart />
     </div>
   </header>
 </template>
 
 <script>
 import vHeaderLogo from "@/components/v-header/v-header-logo";
-import vHeaderBasket from "@/components/v-header/v-header-basket";
+import vHeaderCart from "@/components/v-header/v-header-cart";
 export default {
   components: {
     vHeaderLogo,
-    vHeaderBasket,
+    vHeaderCart,
   },
 };
 </script>

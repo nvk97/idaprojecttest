@@ -26,12 +26,16 @@ export default {
   methods:{
     ...mapMutations('products',{clear:'SUCCESS_POST'}),
     submit(){
-      if(!!this.contact.name&!!this.contact.phone&!!this.contact.address){
+      console.log(this.contact.phone.length)
+      if(!!this.contact.name&this.contact.phone.length==16&!!this.contact.address){
         this.$nuxt.$emit('success-message')
         this.clear()
       }else{
         this.error=true
         setTimeout(()=>this.error=false,2000 )
+        this.contact.name = ''
+        this.contact.phone = ''
+        this.contact.address = ''
       }
     }
   }
