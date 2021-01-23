@@ -1,5 +1,5 @@
 import * as Cookie from 'js-cookie'
-
+import Vue from 'vue'
 export const state = () => ({
   products: [],
   cart: [],
@@ -58,10 +58,13 @@ export const mutations = {
     })
     if (!!res.length) {
       let index = state.cart.findIndex(item => item.id === payload.id)
-      state.cart[index].count++
-      let buf = state.cart //Не смог придумать ничего, что бы поля объекта в массиве были реактивны
-      state.cart = []
-      state.cart = buf
+     
+      // let buf = state.cart //Не смог придумать ничего, что бы поля объекта в массиве были реактивны
+      // state.cart = []
+      // state.cart = buf 
+      let buf = state.cart[index] //Принципиальное ли различие в итоге?Наверное да. Но решение мне все равно кажется не самым элегантным
+      buf.count++
+      Vue.set(state.cart,index,buf)
       state.count = state.cart.reduce((total, val) => {
         total += val.count;
         return total
